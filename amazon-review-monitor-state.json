@@ -1,12 +1,14 @@
 {
-  "checkedAt": "2026-06-05T17:28:50+00:00",
+  "checkedAt": "2026-06-05T22:38:05+00:00",
   "products": [
     {
       "asin": "B0GY718M87",
       "url": "https://www.amazon.com/dp/B0GY718M87?th=1",
       "title": "Car Mattress for Jeep Grand Cherokee L Non-Inflatable Car Camping Mattress, Foldable Trunk Sleeping Pad with Split Design, Portable Car Bed for Road Trips, Camping, Travel",
       "rating": "4.3",
-      "reviewCount": 9
+      "reviewCount": 9,
+      "checkedAt": "2026-06-05T22:38:05+00:00",
+      "note": null
     },
     {
       "asin": "B0H2Y1FLSY",
