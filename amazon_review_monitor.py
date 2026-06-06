@@ -3,7 +3,7 @@ import os
 import re
 import smtplib
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from email.mime.text import MIMEText
 from html import unescape
 from pathlib import Path
@@ -11,7 +11,9 @@ from urllib.request import Request, urlopen
 
 
 STATE_FILE = Path(os.environ.get("STATE_FILE", "amazon-review-monitor-state.json"))
-ALERT_TO = os.environ.get("ALERT_TO", "3326690363@qq.com")
+DEFAULT_ALERT_TO = "3326690363@qq.com,1336155698@qq.com"
+ALERT_TO = os.environ.get("ALERT_TO", DEFAULT_ALERT_TO)
+NO_CHANGE_HOURS = int(os.environ.get("NO_CHANGE_HOURS", "6"))
 
 DEFAULT_PRODUCTS = [
     {
@@ -45,6 +47,22 @@ def parse_count(value: str):
     if not match:
         return None
     return int(match.group(1).replace(",", ""))
+
+
+def parse_time(value):
+    if not value:
+        return None
+    try:
+        parsed = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return parsed.astimezone(timezone.utc)
+
+
+def same_rating(left, right) -> bool:
+    return str(left or "") == str(right or "")
 
 
 def fetch_html(url: str) -> str:
@@ -96,7 +114,6 @@ def parse_product_reviews(html: str, asin: str):
         )
 
     if not block_match:
-        # Some Amazon pages with zero ratings render no visible star/review widget.
         if title:
             return {
                 "title": title,
@@ -147,7 +164,6 @@ def read_state():
     if "products" in state:
         return state
 
-    # Backward compatibility for the original single-ASIN state file.
     if "asin" in state:
         return {
             "products": [
@@ -181,38 +197,57 @@ def send_email(subject: str, body: str):
     if not smtp_user or not smtp_password:
         raise RuntimeError("SMTP_USER and SMTP_PASSWORD secrets are required to send alerts.")
 
+    recipients = [
+        item.strip()
+        for item in re.split(r"[,;]", f"{ALERT_TO},{DEFAULT_ALERT_TO}")
+        if item.strip()
+    ]
+    recipients = list(dict.fromkeys(recipients))
+    if not recipients:
+        raise RuntimeError("ALERT_TO must include at least one recipient email address.")
+
     message = MIMEText(body, "plain", "utf-8")
     message["Subject"] = subject
     message["From"] = alert_from
-    message["To"] = ALERT_TO
+    message["To"] = ", ".join(recipients)
 
     with smtplib.SMTP(smtp_host, smtp_port, timeout=30) as server:
         server.starttls()
         server.login(smtp_user, smtp_password)
-        server.sendmail(alert_from, [ALERT_TO], message.as_string())
+        server.sendmail(alert_from, recipients, message.as_string())
 
 
-def product_lines(change):
+def change_lines(change):
     delta = change["newCount"] - change["oldCount"]
     sign = "+" if delta > 0 else ""
     return [
         f"ASIN: {change['asin']}",
-        f"商品链接: {change['url']}",
-        f"原评论/评分数量: {change['oldCount']}",
-        f"当前评论/评分数量: {change['newCount']}",
-        f"变化: {sign}{delta}",
-        f"原评分: {change.get('oldRating') or '未知'}",
-        f"当前评分: {change.get('newRating') or '未知'}",
+        f"Product URL: {change['url']}",
+        f"Old rating: {change.get('oldRating') or 'N/A'}",
+        f"New rating: {change.get('newRating') or 'N/A'}",
+        f"Old rating/review count: {change['oldCount']}",
+        f"New rating/review count: {change['newCount']}",
+        f"Count change: {sign}{delta}",
+    ]
+
+
+def no_change_lines(item):
+    return [
+        f"ASIN: {item['asin']}",
+        f"Product URL: {item['url']}",
+        f"Rating: {item.get('rating') or 'N/A'}",
+        f"Rating/review count: {item['reviewCount']}",
+        f"No-change window: {NO_CHANGE_HOURS} hours",
     ]
 
 
 def main():
-    checked_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    now = datetime.now(timezone.utc)
+    checked_at = now.isoformat(timespec="seconds")
     state = read_state()
     previous_by_asin = {item.get("asin"): item for item in state.get("products", [])}
     products = state.get("products") or DEFAULT_PRODUCTS
 
-    # Keep newly configured products even if an older state file exists.
     seen = {item.get("asin") for item in products}
     for product in DEFAULT_PRODUCTS:
         if product["asin"] not in seen:
@@ -220,6 +255,7 @@ def main():
 
     updated_products = []
     changes = []
+    no_change_alerts = []
     failures = []
 
     for product in products:
@@ -238,59 +274,102 @@ def main():
 
         old_count = previous.get("reviewCount")
         old_rating = previous.get("rating")
-        new_count = current["reviewCount"]
+        new_count = int(current["reviewCount"])
         new_rating = current.get("rating")
 
-        if old_count is not None and int(old_count) != int(new_count):
+        has_previous = old_count is not None
+        rating_changed = has_previous and not same_rating(old_rating, new_rating)
+        count_changed = has_previous and int(old_count) != new_count
+        changed = rating_changed or count_changed
+
+        unchanged_since = previous.get("unchangedSince") or previous.get("checkedAt") or checked_at
+        last_no_change_alert_at = previous.get("lastNoChangeAlertAt")
+
+        if changed:
             changes.append(
                 {
                     "asin": asin,
                     "url": url,
                     "oldCount": int(old_count),
-                    "newCount": int(new_count),
+                    "newCount": new_count,
                     "oldRating": old_rating,
                     "newRating": new_rating,
                 }
             )
+            unchanged_since = checked_at
+            last_no_change_alert_at = None
+        elif has_previous:
+            unchanged_dt = parse_time(unchanged_since) or now
+            last_alert_dt = parse_time(last_no_change_alert_at)
+            enough_no_change_time = now - unchanged_dt >= timedelta(hours=NO_CHANGE_HOURS)
+            enough_since_last_alert = (
+                last_alert_dt is None
+                or now - last_alert_dt >= timedelta(hours=NO_CHANGE_HOURS)
+            )
+            if enough_no_change_time and enough_since_last_alert:
+                no_change_alerts.append(
+                    {
+                        "asin": asin,
+                        "url": url,
+                        "rating": new_rating,
+                        "reviewCount": new_count,
+                    }
+                )
+                unchanged_since = checked_at
+                last_no_change_alert_at = checked_at
 
-        updated_products.append(
-            {
-                "asin": asin,
-                "url": url,
-                "title": current.get("title") or previous.get("title"),
-                "rating": new_rating,
-                "reviewCount": new_count,
-                "checkedAt": checked_at,
-                "note": current.get("note"),
-            }
-        )
+        updated_product = {
+            "asin": asin,
+            "url": url,
+            "title": current.get("title") or previous.get("title"),
+            "rating": new_rating,
+            "reviewCount": new_count,
+            "checkedAt": checked_at,
+            "unchangedSince": unchanged_since,
+            "lastNoChangeAlertAt": last_no_change_alert_at,
+            "note": current.get("note"),
+        }
+        updated_products.append(updated_product)
         print(f"{asin}: rating={new_rating or 'none'}, reviewCount={new_count}")
 
+    email_sections = []
+    subject_parts = []
+
     if changes:
-        subject = f"Amazon评论数量变化提醒 - {len(changes)}个ASIN"
-        sections = []
+        subject_parts.append(f"{len(changes)} changed")
+        email_sections.append("Rating or rating/review count changed:")
         for change in changes:
-            sections.append("\n".join(product_lines(change)))
-        body = "\n\n---\n\n".join(sections)
-        body += f"\n\n检查时间(UTC): {checked_at}"
+            email_sections.append("\n".join(change_lines(change)))
+
+    if no_change_alerts:
+        subject_parts.append(f"{len(no_change_alerts)} unchanged for {NO_CHANGE_HOURS}h")
+        email_sections.append(f"No rating and count changes for {NO_CHANGE_HOURS} hours:")
+        for item in no_change_alerts:
+            email_sections.append("\n".join(no_change_lines(item)))
+
+    if email_sections:
+        subject = "Amazon monitor alert - " + ", ".join(subject_parts)
+        body = "\n\n---\n\n".join(email_sections)
+        body += f"\n\nCheck time (UTC): {checked_at}"
         if failures:
-            body += "\n\n以下商品本次检查失败，已保留旧基准："
+            body += "\n\nThe following products failed this check and kept their previous baseline:"
             for failure in failures:
                 body += f"\n- {failure['asin']}: {failure['error']}"
         send_email(subject, body)
-        print(f"Alert sent to {ALERT_TO}: {len(changes)} product(s) changed.")
+        print(f"Alert sent to {ALERT_TO}: {', '.join(subject_parts)}.")
     else:
-        print("No review count changes.")
+        print("No changes and no no-change alert due yet.")
 
     write_state(
         {
             "checkedAt": checked_at,
+            "noChangeAlertHours": NO_CHANGE_HOURS,
             "products": updated_products,
         }
     )
 
     if failures:
-        print(f"{len(failures)} product(s) failed to parse; previous state was preserved for them.")
+        print(f"{len(failures)} product(s) failed to parse; previous state was preserved.")
 
 
 if __name__ == "__main__":
