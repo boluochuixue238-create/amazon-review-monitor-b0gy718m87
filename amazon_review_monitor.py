@@ -89,9 +89,23 @@ def detect_blocked_page(html: str) -> bool:
     )
 
 
+def detect_incomplete_page(html: str) -> bool:
+    if len(html) >= 50000:
+        return False
+    indicators = [
+        'id="productTitle"',
+        'id="averageCustomerReviews"',
+        'id="acrPopover"',
+        'id="acrCustomerReviewText"',
+    ]
+    return not any(indicator in html for indicator in indicators)
+
+
 def parse_product_reviews(html: str, asin: str):
     if detect_blocked_page(html):
         raise ValueError("Amazon returned a robot-check page.")
+    if detect_incomplete_page(html):
+        raise ValueError("Amazon returned an incomplete product page; keeping previous baseline.")
 
     title_match = re.search(
         r'<span[^>]*id="productTitle"[^>]*>([\s\S]*?)</span>',
@@ -351,7 +365,7 @@ def main():
         subject = "Amazon monitor alert - " + ", ".join(subject_parts)
         body = "\n\n---\n\n".join(email_sections)
         body += f"\n\nCheck time (UTC): {checked_at}"
-        if failures:
+        if failures and changes:
             body += "\n\nThe following products failed this check and kept their previous baseline:"
             for failure in failures:
                 body += f"\n- {failure['asin']}: {failure['error']}"
