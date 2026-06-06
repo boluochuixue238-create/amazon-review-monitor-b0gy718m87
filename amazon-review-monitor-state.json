@@ -1,5 +1,6 @@
 {
-  "checkedAt": "2026-06-05T22:38:05+00:00",
+  "checkedAt": "2026-06-06T10:42:21+08:00",
+  "noChangeAlertHours": 6,
   "products": [
     {
       "asin": "B0GY718M87",
@@ -7,8 +8,8 @@
       "title": "Car Mattress for Jeep Grand Cherokee L Non-Inflatable Car Camping Mattress, Foldable Trunk Sleeping Pad with Split Design, Portable Car Bed for Road Trips, Camping, Travel",
       "rating": "4.3",
       "reviewCount": 9,
-      "checkedAt": "2026-06-05T22:38:05+00:00",
-      "note": null
+      "unchangedSince": "2026-06-06T10:42:21+08:00",
+      "lastNoChangeAlertAt": null
     },
     {
       "asin": "B0H2Y1FLSY",
@@ -16,7 +17,8 @@
       "title": "Car Mattress for Acura RDX 2007-2012 Non-Inflatable Car Camping Mattress, Foldable Trunk Sleeping Pad with Split Design, Portable Car Bed for Road Trips, Camping, Travel",
       "rating": null,
       "reviewCount": 0,
-      "checkedAt": "2026-06-05T08:46:23+00:00",
+      "unchangedSince": "2026-06-06T10:42:21+08:00",
+      "lastNoChangeAlertAt": null,
       "note": "No visible Amazon review widget; treated as 0 ratings."
     },
     {
@@ -25,15 +27,17 @@
       "title": "Window Visors Rain Guards Compatible with 2026 Toyota RAV4 Only, 6PCS Tape-On Acrylic Side Window Deflectors with Electroplated Chrome-Look Trim, Exterior Accessories",
       "rating": "5.0",
       "reviewCount": 2,
-      "checkedAt": "2026-06-05T17:28:50+00:00",
-      "note": null
+      "unchangedSince": "2026-06-06T10:42:21+08:00",
+      "lastNoChangeAlertAt": null
     },
     {
       "asin": "B0G43LKJDS",
       "url": "https://www.amazon.com/dp/B0G43LKJDS?th=1",
       "title": "Car Bed for Jeep Grand Cherokee, Foldable Non-Inflatable Soft Foam Camping Mattress, Thickened Portable SUV Trunk Sleeping Pad, Air Mattress Upgrade for Camping & Travel Essentials, Outdoor Bed",
       "rating": "3.2",
-      "reviewCount": 16
+      "reviewCount": 16,
+      "unchangedSince": "2026-06-06T10:42:21+08:00",
+      "lastNoChangeAlertAt": null
     }
   ]
 }
