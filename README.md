@@ -1,11 +1,27 @@
 # Amazon Review Monitor for GitHub Actions
 
-This GitHub Actions workflow checks the Amazon product below every 2 hours and emails an alert when the review/rating count changes.
+This GitHub Actions workflow checks multiple Amazon products every 2 hours and emails an alert when any review/rating count changes.
 
-- Product: https://www.amazon.com/dp/B0GY718M87?th=1
-- ASIN: B0GY718M87
-- Alert recipient: 3326690363@qq.com
-- Current baseline: rating 3.7, review/rating count 10
+## Products
+
+| ASIN | Product URL | Current baseline |
+| --- | --- | --- |
+| B0GY718M87 | https://www.amazon.com/dp/B0GY718M87?th=1 | rating 4.3, review/rating count 9 |
+| B0H2Y1FLSY | https://www.amazon.com/dp/B0H2Y1FLSY | no visible rating widget, treated as 0 |
+| B0GWSM5C31 | https://www.amazon.com/dp/B0GWSM5C31 | rating 5.0, review/rating count 2 |
+| B0G43LKJDS | https://www.amazon.com/dp/B0G43LKJDS?th=1 | rating 3.2, review/rating count 16 |
+| B0GHRJT3K7 | https://www.amazon.com/dp/B0GHRJT3K7 | baseline pending |
+| B0GFMHNT24 | https://www.amazon.com/dp/B0GFMHNT24 | baseline pending |
+| B0GCZ11B8D | https://www.amazon.com/dp/B0GCZ11B8D | baseline pending |
+| B0G8XNTZ6N | https://www.amazon.com/dp/B0G8XNTZ6N | baseline pending |
+| B0G8YQZ2R5 | https://www.amazon.com/dp/B0G8YQZ2R5 | baseline pending |
+| B0G8XVQM3H | https://www.amazon.com/dp/B0G8XVQM3H | baseline pending |
+| B0GQLRGWKD | https://www.amazon.com/dp/B0GQLRGWKD | baseline pending |
+| B0GQM2QMBG | https://www.amazon.com/dp/B0GQM2QMBG | baseline pending |
+| B0GQM5D3KF | https://www.amazon.com/dp/B0GQM5D3KF | baseline pending |
+| B0GRZ22VZX | https://www.amazon.com/dp/B0GRZ22VZX | baseline pending |
+
+Alert recipients: 3326690363@qq.com, 1336155698@qq.com, 784541190@qq.com
 
 ## GitHub Secrets
 
