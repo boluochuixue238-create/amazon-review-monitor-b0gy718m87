@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-06-06T09:51:32+00:00",
+  "checkedAt": "2026-06-06T15:00:45+00:00",
   "noChangeAlertHours": 6,
   "products": [
     {
@@ -8,7 +8,7 @@
       "title": "Car Mattress for Jeep Grand Cherokee L Non-Inflatable Car Camping Mattress, Foldable Trunk Sleeping Pad with Split Design, Portable Car Bed for Road Trips, Camping, Travel",
       "rating": "4.3",
       "reviewCount": 9,
-      "checkedAt": "2026-06-06T09:51:32+00:00",
+      "checkedAt": "2026-06-06T15:00:45+00:00",
       "unchangedSince": "2026-06-06T09:51:32+00:00",
       "lastNoChangeAlertAt": "2026-06-06T09:51:32+00:00",
       "note": null
@@ -30,9 +30,10 @@
       "title": "Window Visors Rain Guards Compatible with 2026 Toyota RAV4 Only, 6PCS Tape-On Acrylic Side Window Deflectors with Electroplated Chrome-Look Trim, Exterior Accessories",
       "rating": "5.0",
       "reviewCount": 2,
-      "checkedAt": "2026-06-06T09:35:11+00:00",
-      "unchangedSince": "2026-06-06T10:42:21+08:00",
-      "lastNoChangeAlertAt": null
+      "checkedAt": "2026-06-06T15:00:45+00:00",
+      "unchangedSince": "2026-06-06T15:00:45+00:00",
+      "lastNoChangeAlertAt": "2026-06-06T15:00:45+00:00",
+      "note": null
     },
     {
       "asin": "B0G43LKJDS",
@@ -146,13 +147,13 @@
     {
       "asin": "B0GRZ22VZX",
       "url": "https://www.amazon.com/dp/B0GRZ22VZX",
-      "title": null,
-      "rating": null,
-      "reviewCount": null,
-      "checkedAt": null,
-      "unchangedSince": null,
+      "title": "Car Phone Holder Charger, 15W Wireless Car Charger with Auto Clamp & Smart Sensor, Rotating Vacuum Suction Cup Dashboard/Windshield Phone Mount, 360° Adjustable Car Mount for iPhone, Samsung, Black",
+      "rating": "4.3",
+      "reviewCount": 10,
+      "checkedAt": "2026-06-06T15:00:45+00:00",
+      "unchangedSince": "2026-06-06T15:00:45+00:00",
       "lastNoChangeAlertAt": null,
-      "note": "Baseline pending; Amazon returned an incomplete product page during setup."
+      "note": null
     }
   ]
 }
