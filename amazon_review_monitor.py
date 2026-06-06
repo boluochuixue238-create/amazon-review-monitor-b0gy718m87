@@ -11,7 +11,7 @@ from urllib.request import Request, urlopen
 
 
 STATE_FILE = Path(os.environ.get("STATE_FILE", "amazon-review-monitor-state.json"))
-DEFAULT_ALERT_TO = "3326690363@qq.com,1336155698@qq.com"
+DEFAULT_ALERT_TO = "3326690363@qq.com,1336155698@qq.com,784541190@qq.com"
 ALERT_TO = os.environ.get("ALERT_TO", DEFAULT_ALERT_TO)
 NO_CHANGE_HOURS = int(os.environ.get("NO_CHANGE_HOURS", "6"))
 
@@ -31,6 +31,46 @@ DEFAULT_PRODUCTS = [
     {
         "asin": "B0G43LKJDS",
         "url": "https://www.amazon.com/dp/B0G43LKJDS?th=1",
+    },
+    {
+        "asin": "B0GHRJT3K7",
+        "url": "https://www.amazon.com/dp/B0GHRJT3K7",
+    },
+    {
+        "asin": "B0GFMHNT24",
+        "url": "https://www.amazon.com/dp/B0GFMHNT24",
+    },
+    {
+        "asin": "B0GCZ11B8D",
+        "url": "https://www.amazon.com/dp/B0GCZ11B8D",
+    },
+    {
+        "asin": "B0G8XNTZ6N",
+        "url": "https://www.amazon.com/dp/B0G8XNTZ6N",
+    },
+    {
+        "asin": "B0G8YQZ2R5",
+        "url": "https://www.amazon.com/dp/B0G8YQZ2R5",
+    },
+    {
+        "asin": "B0G8XVQM3H",
+        "url": "https://www.amazon.com/dp/B0G8XVQM3H",
+    },
+    {
+        "asin": "B0GQLRGWKD",
+        "url": "https://www.amazon.com/dp/B0GQLRGWKD",
+    },
+    {
+        "asin": "B0GQM2QMBG",
+        "url": "https://www.amazon.com/dp/B0GQM2QMBG",
+    },
+    {
+        "asin": "B0GQM5D3KF",
+        "url": "https://www.amazon.com/dp/B0GQM5D3KF",
+    },
+    {
+        "asin": "B0GRZ22VZX",
+        "url": "https://www.amazon.com/dp/B0GRZ22VZX",
     },
 ]
 
