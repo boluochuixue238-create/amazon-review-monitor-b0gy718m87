@@ -29,7 +29,7 @@ jobs:
         env:
           ASIN: B0GY718M87
           AMAZON_URL: https://www.amazon.com/dp/B0GY718M87?th=1
-          ALERT_TO: 3326690363@qq.com,1336155698@qq.com
+          ALERT_TO: 3326690363@qq.com,1336155698@qq.com,784541190@qq.com
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
         run: python amazon_review_monitor.py
