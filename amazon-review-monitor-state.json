@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-06-16T22:21:44+00:00",
+  "checkedAt": "2026-06-17T13:03:10+00:00",
   "noChangeAlertHours": 6,
   "products": [
     {
@@ -39,11 +39,11 @@
       "asin": "B0G43LKJDS",
       "url": "https://www.amazon.com/dp/B0G43LKJDS?th=1",
       "title": "Car Bed for Jeep Grand Cherokee, Foldable Non-Inflatable Soft Foam Camping Mattress, Thickened Portable SUV Trunk Sleeping Pad, Air Mattress Upgrade for Camping & Travel Essentials, Outdoor Bed",
-      "rating": "2.8",
-      "reviewCount": 20,
-      "checkedAt": "2026-06-14T17:01:23+00:00",
-      "unchangedSince": "2026-06-14T17:01:23+00:00",
-      "lastNoChangeAlertAt": "2026-06-14T17:01:23+00:00",
+      "rating": "5.0",
+      "reviewCount": 2,
+      "checkedAt": "2026-06-17T13:03:10+00:00",
+      "unchangedSince": "2026-06-17T13:03:10+00:00",
+      "lastNoChangeAlertAt": null,
       "note": null
     },
     {
@@ -96,9 +96,9 @@
       "title": "Magnetic Phone Holder for Car Wireless Charging, 15W Fast Wireless Car Charger with Vacuum Suction, 360° Adjustable Magnetic Mount for Dashboard & Windshield, Hands-Free for MagSafe iPhone & Android",
       "rating": "4.5",
       "reviewCount": 38,
-      "checkedAt": "2026-06-16T13:19:01+00:00",
-      "unchangedSince": "2026-06-16T13:19:01+00:00",
-      "lastNoChangeAlertAt": null,
+      "checkedAt": "2026-06-17T13:03:10+00:00",
+      "unchangedSince": "2026-06-17T13:03:10+00:00",
+      "lastNoChangeAlertAt": "2026-06-17T13:03:10+00:00",
       "note": null
     },
     {
