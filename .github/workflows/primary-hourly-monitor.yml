@@ -1,0 +1,48 @@
+name: Amazon Primary ASIN Hourly Monitor
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: amazon-primary-hourly-monitor-b0ghqmrwq8
+  cancel-in-progress: false
+
+jobs:
+  monitor-primary:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Check primary ASIN hourly
+        env:
+          PRIMARY_ASIN: B0GHQMRWQ8
+          ALWAYS_SEND_REPORT: "true"
+          ALERT_TO: 3326690363@qq.com
+          STATE_FILE: primary-hourly-monitor-state.json
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+        run: python primary_hourly_monitor.py
+
+      - name: Commit primary monitor state changes
+        run: |
+          if git diff --quiet primary-hourly-monitor-state.json; then
+            echo "No primary state changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add primary-hourly-monitor-state.json
+          git commit -m "Update primary hourly monitor state"
+          git push
