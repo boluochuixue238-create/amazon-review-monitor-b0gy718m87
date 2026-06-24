@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: amazon-review-monitor-b0gy718m87
+  group: amazon-review-monitor-state-writes
   cancel-in-progress: false
 
 jobs:
@@ -35,12 +35,13 @@ jobs:
 
       - name: Commit monitor state changes
         run: |
-          if git diff --quiet amazon-review-monitor-state.json; then
-            echo "No state changes to commit."
-            exit 0
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add amazon-review-monitor-state.json
+          if git diff --cached --quiet; then
+            echo "No state changes to commit."
+            exit 0
+          fi
           git commit -m "Update Amazon review monitor state"
+          git pull --rebase origin main
           git push
