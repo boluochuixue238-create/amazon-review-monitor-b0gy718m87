@@ -1,39 +1,10 @@
 {
-  "checkedAt": "2026-06-23T23:38:15+00:00",
+  "checkedAt": "2026-06-24T08:51:34+00:00",
   "noChangeAlertHours": 6,
   "products": [
     {
-      "asin": "B0GY718M87",
-      "url": "https://www.amazon.com/dp/B0GY718M87?th=1",
-      "title": "Car Mattress for Jeep Grand Cherokee L 2021-2026 Non-Inflatable Car Camping Mattress, Foldable Trunk Sleeping Pad with Split Design, Portable Car Bed for Road Trips, Camping, Travel",
-      "rating": null,
-      "reviewCount": 0,
-      "checkedAt": "2026-06-23T11:43:27+00:00",
-      "unchangedSince": "2026-06-23T11:43:27+00:00",
-      "lastNoChangeAlertAt": null,
-      "note": null
-    },
-    {
-      "asin": "B0H2Y1FLSY",
-      "url": "https://www.amazon.com/dp/B0H2Y1FLSY",
-      "title": "Car Mattress for Acura RDX 2007-2012 Non-Inflatable Car Camping Mattress, Foldable Trunk Sleeping Pad with Split Design, Portable Car Bed for Road Trips, Camping, Travel",
-      "rating": null,
-      "reviewCount": 0,
-      "checkedAt": "2026-06-06T09:35:11+00:00",
-      "unchangedSince": "2026-06-06T10:42:21+08:00",
-      "lastNoChangeAlertAt": null,
-      "note": "No visible Amazon review widget; treated as 0 ratings."
-    },
-    {
-      "asin": "B0GWSM5C31",
-      "url": "https://www.amazon.com/dp/B0GWSM5C31",
-      "title": "Window Visors Rain Guards Compatible with 2026 Toyota RAV4 Only, 6PCS Tape-On Acrylic Side Window Deflectors with Electroplated Chrome-Look Trim, Exterior Accessories",
-      "rating": "5.0",
-      "reviewCount": 1,
-      "checkedAt": "2026-06-23T19:26:38+00:00",
-      "unchangedSince": "2026-06-23T19:26:38+00:00",
-      "lastNoChangeAlertAt": "2026-06-23T19:26:38+00:00",
-      "note": null
+      "asin": "B0GHQMRWQ8",
+      "url": "https://www.amazon.com/dp/B0GHQMRWQ8"
     },
     {
       "asin": "B0G43LKJDS",
@@ -47,9 +18,9 @@
       "note": null
     },
     {
-      "asin": "B0GHRJT3K7",
-      "url": "https://www.amazon.com/dp/B0GHRJT3K7",
-      "title": "Car Phone Mount for 2022-2026 Toyota Tundra & 2023-2026 Toyota Sequoia, Smart Auto-Clamping on 14\" Touchscreen, 15W Wireless Fast Charging, 360° Adjustable, Without Blocking Airflow",
+      "asin": "B0G8XNTZ6N",
+      "url": "https://www.amazon.com/dp/B0G8XNTZ6N",
+      "title": "Car Phone Mount for Toyota Tacoma 2016–2023, Smart Auto-Clamping on Custom Dashboard Base, 15W Wireless Fast Charging, 360° Adjustable, Without Blocking Airflow, Toyota Tacoma Essential Accessories",
       "rating": "4.5",
       "reviewCount": 40,
       "checkedAt": "2026-06-22T23:06:07+00:00",
@@ -58,9 +29,20 @@
       "note": null
     },
     {
-      "asin": "B0GFMHNT24",
-      "url": "https://www.amazon.com/dp/B0GFMHNT24",
-      "title": "Car Phone Mount for Honda CR-V 2017–2022, 15W Wireless Fast Charging Auto-Clamping Vent Phone Holder, One-Hand Operation, Hands-Free, 360° Adjustable, Without Blocking Airflow",
+      "asin": "B0G8XVQM3H",
+      "url": "https://www.amazon.com/dp/B0G8XVQM3H",
+      "title": "Car Phone Mount for Model 3 & Model Y, Screen Side Custom Fit for Center Display, 15W Wireless Fast Charging Auto-Clamping, Unobstructed View, Compatible with iPhone & Android",
+      "rating": "4.5",
+      "reviewCount": 40,
+      "checkedAt": "2026-06-22T17:57:39+00:00",
+      "unchangedSince": "2026-06-22T17:57:39+00:00",
+      "lastNoChangeAlertAt": null,
+      "note": null
+    },
+    {
+      "asin": "B0G8YQZ2R5",
+      "url": "https://www.amazon.com/dp/B0G8YQZ2R5",
+      "title": "Magnetic Phone Holder for Car Wireless Charging, 15W Fast Wireless Car Charger with Vacuum Suction, 360° Adjustable Magnetic Mount for Dashboard & Windshield, Hands-Free for MagSafe iPhone & Android",
       "rating": "4.6",
       "reviewCount": 41,
       "checkedAt": "2026-06-23T19:26:38+00:00",
@@ -80,20 +62,9 @@
       "note": null
     },
     {
-      "asin": "B0G8XNTZ6N",
-      "url": "https://www.amazon.com/dp/B0G8XNTZ6N",
-      "title": "Car Phone Mount for Toyota Tacoma 2016–2023, Smart Auto-Clamping on Custom Dashboard Base, 15W Wireless Fast Charging, 360° Adjustable, Without Blocking Airflow, Toyota Tacoma Essential Accessories",
-      "rating": "4.5",
-      "reviewCount": 40,
-      "checkedAt": "2026-06-22T23:06:07+00:00",
-      "unchangedSince": "2026-06-22T23:06:07+00:00",
-      "lastNoChangeAlertAt": null,
-      "note": null
-    },
-    {
-      "asin": "B0G8YQZ2R5",
-      "url": "https://www.amazon.com/dp/B0G8YQZ2R5",
-      "title": "Magnetic Phone Holder for Car Wireless Charging, 15W Fast Wireless Car Charger with Vacuum Suction, 360° Adjustable Magnetic Mount for Dashboard & Windshield, Hands-Free for MagSafe iPhone & Android",
+      "asin": "B0GFMHNT24",
+      "url": "https://www.amazon.com/dp/B0GFMHNT24",
+      "title": "Car Phone Mount for Honda CR-V 2017–2022, 15W Wireless Fast Charging Auto-Clamping Vent Phone Holder, One-Hand Operation, Hands-Free, 360° Adjustable, Without Blocking Airflow",
       "rating": "4.6",
       "reviewCount": 41,
       "checkedAt": "2026-06-23T19:26:38+00:00",
@@ -102,13 +73,13 @@
       "note": null
     },
     {
-      "asin": "B0G8XVQM3H",
-      "url": "https://www.amazon.com/dp/B0G8XVQM3H",
-      "title": "Car Phone Mount for Model 3 & Model Y, Screen Side Custom Fit for Center Display, 15W Wireless Fast Charging Auto-Clamping, Unobstructed View, Compatible with iPhone & Android",
+      "asin": "B0GHRJT3K7",
+      "url": "https://www.amazon.com/dp/B0GHRJT3K7",
+      "title": "Car Phone Mount for 2022-2026 Toyota Tundra & 2023-2026 Toyota Sequoia, Smart Auto-Clamping on 14\" Touchscreen, 15W Wireless Fast Charging, 360° Adjustable, Without Blocking Airflow",
       "rating": "4.5",
       "reviewCount": 40,
-      "checkedAt": "2026-06-22T17:57:39+00:00",
-      "unchangedSince": "2026-06-22T17:57:39+00:00",
+      "checkedAt": "2026-06-22T23:06:07+00:00",
+      "unchangedSince": "2026-06-22T23:06:07+00:00",
       "lastNoChangeAlertAt": null,
       "note": null
     },
@@ -127,11 +98,11 @@
       "asin": "B0GQM2QMBG",
       "url": "https://www.amazon.com/dp/B0GQM2QMBG",
       "title": "Car Phone Mount for 2023-2026 Honda CR-V & HR-V, Smart Auto-Clamping on 7/9\" Touchscreen, 15W Wireless Fast Charging, Premium Aluminum Holder, Without Blocking Airflow",
-      "rating": "4.5",
-      "reviewCount": 37,
-      "checkedAt": "2026-06-14T17:01:23+00:00",
-      "unchangedSince": "2026-06-14T17:01:23+00:00",
-      "lastNoChangeAlertAt": "2026-06-14T17:01:23+00:00",
+      "rating": "4.4",
+      "reviewCount": 42,
+      "checkedAt": "2026-06-24T08:51:34+00:00",
+      "unchangedSince": "2026-06-24T08:51:34+00:00",
+      "lastNoChangeAlertAt": null,
       "note": null
     },
     {
@@ -155,6 +126,39 @@
       "unchangedSince": "2026-06-21T22:38:09+00:00",
       "lastNoChangeAlertAt": null,
       "note": null
+    },
+    {
+      "asin": "B0GWSM5C31",
+      "url": "https://www.amazon.com/dp/B0GWSM5C31",
+      "title": "Window Visors Rain Guards Compatible with 2026 Toyota RAV4 Only, 6PCS Tape-On Acrylic Side Window Deflectors with Electroplated Chrome-Look Trim, Exterior Accessories",
+      "rating": "5.0",
+      "reviewCount": 1,
+      "checkedAt": "2026-06-23T19:26:38+00:00",
+      "unchangedSince": "2026-06-23T19:26:38+00:00",
+      "lastNoChangeAlertAt": "2026-06-23T19:26:38+00:00",
+      "note": null
+    },
+    {
+      "asin": "B0GY718M87",
+      "url": "https://www.amazon.com/dp/B0GY718M87?th=1",
+      "title": "Car Mattress for Jeep Grand Cherokee L 2021-2026 Non-Inflatable Car Camping Mattress, Foldable Trunk Sleeping Pad with Split Design, Portable Car Bed for Road Trips, Camping, Travel",
+      "rating": null,
+      "reviewCount": 0,
+      "checkedAt": "2026-06-23T11:43:27+00:00",
+      "unchangedSince": "2026-06-23T11:43:27+00:00",
+      "lastNoChangeAlertAt": null,
+      "note": null
+    },
+    {
+      "asin": "B0H2Y1FLSY",
+      "url": "https://www.amazon.com/dp/B0H2Y1FLSY",
+      "title": "Car Mattress for Acura RDX 2007-2012 Non-Inflatable Car Camping Mattress, Foldable Trunk Sleeping Pad with Split Design, Portable Car Bed for Road Trips, Camping, Travel",
+      "rating": null,
+      "reviewCount": 0,
+      "checkedAt": "2026-06-06T09:35:11+00:00",
+      "unchangedSince": "2026-06-06T10:42:21+08:00",
+      "lastNoChangeAlertAt": null,
+      "note": "No visible Amazon review widget; treated as 0 ratings."
     }
   ]
 }
