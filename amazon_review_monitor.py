@@ -14,18 +14,14 @@ STATE_FILE = Path(os.environ.get("STATE_FILE", "amazon-review-monitor-state.json
 DEFAULT_ALERT_TO = "3326690363@qq.com,1336155698@qq.com,784541190@qq.com"
 ALERT_TO = os.environ.get("ALERT_TO", DEFAULT_ALERT_TO)
 NO_CHANGE_HOURS = int(os.environ.get("NO_CHANGE_HOURS", "6"))
-PRIMARY_ASIN = os.environ.get("PRIMARY_ASIN", "B0GHQMRWQ8")
-ALWAYS_SEND_REPORT = os.environ.get("ALWAYS_SEND_REPORT", "true").lower() in {
+PRIMARY_ASIN = os.environ.get("PRIMARY_ASIN", "")
+ALWAYS_SEND_REPORT = os.environ.get("ALWAYS_SEND_REPORT", "false").lower() in {
     "1",
     "true",
     "yes",
 }
 
 DEFAULT_PRODUCTS = [
-    {
-        "asin": "B0GHQMRWQ8",
-        "url": "https://www.amazon.com/dp/B0GHQMRWQ8",
-    },
     {
         "asin": "B0GY718M87",
         "url": "https://www.amazon.com/dp/B0GY718M87?th=1",
@@ -81,7 +77,7 @@ DEFAULT_PRODUCTS = [
     {
         "asin": "B0GRZ22VZX",
         "url": "https://www.amazon.com/dp/B0GRZ22VZX",
-    },
+    }
 ]
 
 
@@ -326,7 +322,11 @@ def main():
     checked_at = now.isoformat(timespec="seconds")
     state = read_state()
     previous_by_asin = {item.get("asin"): item for item in state.get("products", [])}
-    products = state.get("products") or DEFAULT_PRODUCTS
+    configured_asins = {item["asin"] for item in DEFAULT_PRODUCTS}
+    products = [
+        item for item in (state.get("products") or DEFAULT_PRODUCTS)
+        if item.get("asin") in configured_asins
+    ] or DEFAULT_PRODUCTS
 
     seen = {item.get("asin") for item in products}
     for product in DEFAULT_PRODUCTS:
