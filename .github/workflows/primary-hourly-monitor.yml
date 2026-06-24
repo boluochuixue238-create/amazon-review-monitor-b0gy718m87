@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: amazon-primary-hourly-monitor-b0ghqmrwq8
+  group: amazon-review-monitor-state-writes
   cancel-in-progress: false
 
 jobs:
@@ -37,12 +37,13 @@ jobs:
 
       - name: Commit primary monitor state changes
         run: |
-          if git diff --quiet primary-hourly-monitor-state.json; then
-            echo "No primary state changes to commit."
-            exit 0
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add primary-hourly-monitor-state.json
+          if git diff --cached --quiet; then
+            echo "No primary state changes to commit."
+            exit 0
+          fi
           git commit -m "Update primary hourly monitor state"
+          git pull --rebase origin main
           git push
