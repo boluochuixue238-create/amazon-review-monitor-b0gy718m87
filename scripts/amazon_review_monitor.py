@@ -14,8 +14,18 @@ STATE_FILE = Path(os.environ.get("STATE_FILE", "amazon-review-monitor-state.json
 DEFAULT_ALERT_TO = "3326690363@qq.com,1336155698@qq.com,784541190@qq.com"
 ALERT_TO = os.environ.get("ALERT_TO", DEFAULT_ALERT_TO)
 NO_CHANGE_HOURS = int(os.environ.get("NO_CHANGE_HOURS", "6"))
+PRIMARY_ASIN = os.environ.get("PRIMARY_ASIN", "B0GHQMRWQ8")
+ALWAYS_SEND_REPORT = os.environ.get("ALWAYS_SEND_REPORT", "true").lower() in {
+    "1",
+    "true",
+    "yes",
+}
 
 DEFAULT_PRODUCTS = [
+    {
+        "asin": "B0GHQMRWQ8",
+        "url": "https://www.amazon.com/dp/B0GHQMRWQ8",
+    },
     {
         "asin": "B0GY718M87",
         "url": "https://www.amazon.com/dp/B0GY718M87?th=1",
@@ -295,6 +305,22 @@ def no_change_lines(item):
     ]
 
 
+def status_lines(product):
+    prefix = "PRIMARY ASIN" if product.get("asin") == PRIMARY_ASIN else "ASIN"
+    lines = [
+        f"{prefix}: {product['asin']}",
+        f"Product URL: {product['url']}",
+        f"Rating: {product.get('rating') or 'N/A'}",
+        f"Rating/review count: {product.get('reviewCount') if product.get('reviewCount') is not None else 'baseline pending'}",
+        f"Last successful check: {product.get('checkedAt') or 'not established yet'}",
+    ]
+    if product.get("title"):
+        lines.append(f"Title: {product['title']}")
+    if product.get("note"):
+        lines.append(f"Note: {product['note']}")
+    return lines
+
+
 def main():
     now = datetime.now(timezone.utc)
     checked_at = now.isoformat(timespec="seconds")
@@ -306,6 +332,11 @@ def main():
     for product in DEFAULT_PRODUCTS:
         if product["asin"] not in seen:
             products.append(product)
+
+    products = sorted(
+        products,
+        key=lambda item: (0 if item.get("asin") == PRIMARY_ASIN else 1, item.get("asin") or ""),
+    )
 
     updated_products = []
     changes = []
@@ -401,11 +432,24 @@ def main():
         for item in no_change_alerts:
             email_sections.append("\n".join(no_change_lines(item)))
 
+    if ALWAYS_SEND_REPORT:
+        if not changes:
+            subject_parts.append("hourly status")
+        email_sections.append("Hourly status report:")
+        for product in updated_products:
+            email_sections.append("\n".join(status_lines(product)))
+        if failures:
+            email_sections.append(
+                "Products not fully read this run; previous baseline was kept:"
+            )
+            for failure in failures:
+                email_sections.append(f"{failure['asin']}: {failure['error']}")
+
     if email_sections:
-        subject = "Amazon monitor alert - " + ", ".join(subject_parts)
+        subject = "Amazon monitor - " + ", ".join(dict.fromkeys(subject_parts))
         body = "\n\n---\n\n".join(email_sections)
         body += f"\n\nCheck time (UTC): {checked_at}"
-        if failures and changes:
+        if failures and changes and not ALWAYS_SEND_REPORT:
             body += "\n\nThe following products failed this check and kept their previous baseline:"
             for failure in failures:
                 body += f"\n- {failure['asin']}: {failure['error']}"
