@@ -1,11 +1,12 @@
 # Amazon Review Monitor for GitHub Actions
 
-This GitHub Actions workflow checks multiple Amazon products every 2 hours and emails an alert when any review/rating count changes.
+This GitHub Actions workflow checks multiple Amazon products every hour and emails a status report every run, whether or not review/rating values changed.
 
 ## Products
 
 | ASIN | Product URL | Current baseline |
 | --- | --- | --- |
+| B0GHQMRWQ8 | https://www.amazon.com/dp/B0GHQMRWQ8 | primary ASIN, baseline pending |
 | B0GY718M87 | https://www.amazon.com/dp/B0GY718M87?th=1 | rating 4.3, review/rating count 9 |
 | B0H2Y1FLSY | https://www.amazon.com/dp/B0H2Y1FLSY | no visible rating widget, treated as 0 |
 | B0GWSM5C31 | https://www.amazon.com/dp/B0GWSM5C31 | rating 5.0, review/rating count 2 |
