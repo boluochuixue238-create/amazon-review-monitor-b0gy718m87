@@ -2,7 +2,7 @@ name: Amazon Review Monitor
 
 on:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "0 */2 * * *"
   workflow_dispatch:
 
 permissions:
@@ -27,10 +27,7 @@ jobs:
 
       - name: Check Amazon review count
         env:
-          ASIN: B0GY718M87
-          AMAZON_URL: https://www.amazon.com/dp/B0GY718M87?th=1
-          PRIMARY_ASIN: B0GHQMRWQ8
-          ALWAYS_SEND_REPORT: "true"
+          ALWAYS_SEND_REPORT: "false"
           ALERT_TO: 3326690363@qq.com,1336155698@qq.com,784541190@qq.com
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
