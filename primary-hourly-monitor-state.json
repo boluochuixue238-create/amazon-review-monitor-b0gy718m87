@@ -1,10 +1,17 @@
 {
-  "checkedAt": "2026-06-25T23:55:41+00:00",
+  "checkedAt": "2026-06-26T11:20:16+00:00",
   "noChangeAlertHours": 6,
   "products": [
     {
       "asin": "B0GHQMRWQ8",
-      "url": "https://www.amazon.com/dp/B0GHQMRWQ8"
+      "url": "https://www.amazon.com/dp/B0GHQMRWQ8",
+      "title": "Car Mattress for Tesla Model Y 2020-2026 Non-Inflatable Car Camping Mattress, Foldable Trunk Sleeping Pad with Split Design, Portable Car Bed for Road Trips, Camping, Travel",
+      "rating": "4.8",
+      "reviewCount": 8,
+      "checkedAt": "2026-06-26T11:20:16+00:00",
+      "unchangedSince": "2026-06-26T11:20:16+00:00",
+      "lastNoChangeAlertAt": null,
+      "note": null
     }
   ]
 }
