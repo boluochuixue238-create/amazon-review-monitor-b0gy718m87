@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-07-01T11:40:35+00:00",
+  "checkedAt": "2026-07-01T18:32:14+00:00",
   "noChangeAlertHours": 6,
   "products": [
     {
@@ -28,11 +28,11 @@
       "asin": "B0G8XVQM3H",
       "url": "https://www.amazon.com/dp/B0G8XVQM3H",
       "title": "Car Phone Mount for Model 3 & Model Y, Screen Side Custom Fit for Center Display, 15W Wireless Fast Charging Auto-Clamping, Unobstructed View, Compatible with iPhone & Android",
-      "rating": "4.4",
-      "reviewCount": 43,
-      "checkedAt": "2026-06-28T20:22:24+00:00",
-      "unchangedSince": "2026-06-28T20:22:24+00:00",
-      "lastNoChangeAlertAt": "2026-06-28T20:22:24+00:00",
+      "rating": "4.3",
+      "reviewCount": 48,
+      "checkedAt": "2026-07-01T18:32:14+00:00",
+      "unchangedSince": "2026-07-01T18:32:14+00:00",
+      "lastNoChangeAlertAt": null,
       "note": null
     },
     {
@@ -105,10 +105,10 @@
       "asin": "B0GQM5D3KF",
       "url": "https://www.amazon.com/dp/B0GQM5D3KF",
       "title": "Car Phone Mount for 2019-2025 Toyota RAV4, Smart Auto-Clamping for 7/8\" Screen Only (LE/XLE/Adventure), 15W Wireless Fast Charging, Premium Aluminum Holder, Without Blocking Airflow (Not Fit 9/10.5\")",
-      "rating": "4.4",
-      "reviewCount": 44,
-      "checkedAt": "2026-06-29T13:18:16+00:00",
-      "unchangedSince": "2026-06-29T13:18:16+00:00",
+      "rating": "4.3",
+      "reviewCount": 48,
+      "checkedAt": "2026-07-01T18:32:14+00:00",
+      "unchangedSince": "2026-07-01T18:32:14+00:00",
       "lastNoChangeAlertAt": null,
       "note": null
     },
